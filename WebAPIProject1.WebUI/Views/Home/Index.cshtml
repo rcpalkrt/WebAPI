@@ -1,0 +1,60 @@
+﻿@using WebAPIProject1.WebUI.Models;
+@model List<Employee>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>DJ AKMAN</h2>
+
+<span class="btn btn-success" onclick="funclistEmployees()">TIK ME</span>
+
+<ul class="IRGAT"></ul>
+
+<a href="@Url.Action("PostEmployee","Home")" class="btn btn-success">Yeni Kayıt Ekle</a>
+
+<table class="table">
+    <tr style="background-color:#424242; color:#fff">
+        <th>
+            ID
+        </th>
+        <th>
+            Personel Adı
+        </th>
+        <th>
+            Personel Soyadı
+        </th>
+        <th>
+            Maaş (TL)
+        </th>
+        <th>
+            Departmanı
+        </th>
+        <th>
+            İşlemler
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td style="width:40px">
+            @item.ID
+        </td>
+        <td style="width:100px">
+            @item.Name
+        </td>
+        <td style="width:240px">
+            @item.SurName
+        </td>
+        <td style="width:200px">
+            @item.Salary
+        </td>
+        <td style="width:150px">
+            @item.Departman
+        </td>
+        <td style="width:250px">
+            @Html.ActionLink("Düzenle", "EditEmployee", new { id = item.ID }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Sil", "DeleteEmployee", new { id = item.ID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+    }
+</table>
